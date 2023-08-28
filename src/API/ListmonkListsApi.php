@@ -19,10 +19,10 @@ class ListmonkListsApi
         $this->listBuilder = $listBuilder ?? new ListBuilder();
     }
 
-    public function getAllLists(): PaginatorModel
+    public function getAllLists(int $page = 1, int $perPage = 100): PaginatorModel
     {
         $useCase = new GetAllLists($this->api, $this->listBuilder);
-        return $useCase->__invoke();
+        return $useCase->__invoke($page, $perPage);
     }
 
     public function getListById(int $id): ?ListModel

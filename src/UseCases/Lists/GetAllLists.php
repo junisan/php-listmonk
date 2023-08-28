@@ -17,9 +17,9 @@ class GetAllLists
         $this->listBuilder = $listBuilder;
     }
 
-    public function __invoke(): PaginatorModel
+    public function __invoke(int $page = 1, int $perPage = 100): PaginatorModel
     {
-        $data = $this->api->get('/lists');
+        $data = $this->api->get('/lists?page='.$page.'&per_page='.$perPage);
         $lists = array_map(fn(array $data) => $this->listBuilder->__invoke($data), $data['results']);
 
         return new PaginatorModel(

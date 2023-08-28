@@ -8,6 +8,7 @@ use Junisan\ListmonkApi\Models\PaginatorModel;
 use Junisan\ListmonkApi\UseCases\Campaigns\ChangeCampaignStatus;
 use Junisan\ListmonkApi\UseCases\Campaigns\CreateCampaign;
 use Junisan\ListmonkApi\UseCases\Campaigns\GetAllCampaigns;
+use Junisan\ListmonkApi\UseCases\Campaigns\GetCampaignById;
 use Junisan\ListmonkApi\UseCases\Campaigns\PreviewCampaign;
 
 class ListmonkCampaignsApi
@@ -27,10 +28,16 @@ class ListmonkCampaignsApi
         return $useCase->__invoke($campaign);
     }
 
-    public function getAllCampaigns(): PaginatorModel
+    public function getAllCampaigns(int $page = 1, int $perPage = 100): PaginatorModel
     {
         $useCase = new GetAllCampaigns($this->api, $this->campaignBuilder);
-        return $useCase->__invoke();
+        return $useCase->__invoke($page, $perPage);
+    }
+
+    public function getCampaignById(int $id): CampaignModel
+    {
+        $useCase = new GetCampaignById($this->api, $this->campaignBuilder);
+        return $useCase->__invoke($id);
     }
 
     public function changeCampaignStatus(int $id, string $newStatus): CampaignModel
