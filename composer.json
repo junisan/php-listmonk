@@ -1,0 +1,44 @@
+{
+  "name": "junisan/php-listmonk",
+  "description": "Listmonk API Implementation in PHP",
+  "version": "0.1",
+  "homepage": "https://github.com/junisan/php-listmonk",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Juan Nicolás",
+      "email": "juan.nicosan@gmail.com",
+      "homepage": "https://www.juannicolas.eu",
+      "role": "Developer"
+    }
+  ],
+  "type": "library",
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^7.5"
+  },
+  "require-dev": {
+    "ext-dom": "*",
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Junisan\\ListmonkApi\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Junisan\\ListmonkApi\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    }
+  },
+  "scripts": {
+    "test": "phpunit tests/",
+    "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+  }
+}
